@@ -1,7 +1,8 @@
 /* global module:false */
 module.exports = function(grunt) {
-	var port = grunt.option('port') || 8000;
 	var base = grunt.option('base') || '.';
+	var port = grunt.option('port') || process.env.OPENSHIFT_NODEJS_PORT || 8090;
+	var ip = grunt.option('ip') || process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
 
 	// Project configuration
 	grunt.initConfig({
@@ -93,6 +94,7 @@ module.exports = function(grunt) {
 			server: {
 				options: {
 					port: port,
+        			hostname: ip,
 					base: base,
 					livereload: true,
 					open: true
