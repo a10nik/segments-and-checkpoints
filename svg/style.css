@@ -1,0 +1,28 @@
+.background {
+	fill: white;
+}
+
+.segment-marker-line {
+	stroke-width: 10;
+	stroke: black;
+
+}
+
+.segment {
+	stroke: black;
+	stroke-width: 10;
+	marker-end: url(#segmentMarker);
+	marker-start: url(#segmentMarker);
+}
+
+.segment-checked {
+	stroke: #116633;
+	stroke-width: 10;
+	marker-end: url(#segmentMarker);
+	marker-start: url(#segmentMarker);
+}
+
+.checkpoint {
+	stroke: #aa1111;
+	stroke-width: 10;
+}
