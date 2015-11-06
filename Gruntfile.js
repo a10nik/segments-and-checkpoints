@@ -84,20 +84,28 @@ module.exports = function(grunt) {
 					console: false,
 					unescape: false,
 					define: false,
-					exports: false
+					exports: false,
+					process: false
 				}
 			},
 			files: [ 'Gruntfile.js', 'js/reveal.js' ]
 		},
 
 		connect: {
-			server: {
+			devServer: {
+				options: {
+					port: port,
+					base: base,
+					livereload: true,
+					open: true
+				}
+			},
+			realServer: {
 				options: {
 					port: port,
         			hostname: ip,
 					base: base,
-					livereload: true,
-					open: true
+					keepalive: true
 				}
 			}
 		},
@@ -170,9 +178,13 @@ module.exports = function(grunt) {
 	grunt.registerTask( 'package', [ 'default', 'zip' ] );
 
 	// Serve presentation locally
-	grunt.registerTask( 'serve', [ 'connect', 'watch' ] );
+	grunt.registerTask( 'devServer', [ 'connect:devServer', 'watch' ] );
 
 	// Run tests
 	grunt.registerTask( 'test', [ 'jshint', 'qunit' ] );
+
+	// Build and run
+	grunt.registerTask( 'realServer', [ 'default', 'connect:realServer' ] );
+
 
 };
